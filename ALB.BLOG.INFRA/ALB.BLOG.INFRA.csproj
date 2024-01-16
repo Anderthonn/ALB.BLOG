@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ALB.BLOG.DOMAIN\ALB.BLOG.DOMAIN.csproj" />
+  </ItemGroup>
+
 </Project>
