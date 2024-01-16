@@ -1,4 +1,7 @@
-﻿using ALB.BLOG.DAL.Interfaces;
+﻿using ALB.BLOG.BLO.Interfaces;
+using ALB.BLOG.BLO.Rules;
+using ALB.BLOG.BLO.Services;
+using ALB.BLOG.DAL.Interfaces;
 using ALB.BLOG.DAL.Querys;
 using ALB.BLOG.DOMAIN.Models;
 using ALB.BLOG.INFRA.DbContextConnections;
@@ -26,6 +29,12 @@ namespace ALB.BLOG.INFRA.IOC.InfrastructureSettings
             services.AddScoped<IPageDAO, PageDAO>();
             services.AddScoped<IPostDAO, PostDAO>();
             services.AddScoped<ISettingDAO, SettingDAO>();
+
+            //Dependency injection of the BLO layer.
+            services.AddScoped<IEmailBLO, EmailBLO>();
+
+            //Dependency injection of BLO Serves layer Services.
+            services.AddScoped<IGeneralBlogServices, GeneralBlogServices>();
 
             return services;
         }
