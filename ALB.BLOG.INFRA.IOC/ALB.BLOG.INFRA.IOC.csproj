@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ALB.BLOG.DOMAIN\ALB.BLOG.DOMAIN.csproj" />
     <ProjectReference Include="..\ALB.BLOG.INFRA\ALB.BLOG.INFRA.csproj" />
   </ItemGroup>
