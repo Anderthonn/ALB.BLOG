@@ -226,6 +226,12 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
+              "C:\\Users\\amelobat\\OneDrive - NTT DATA EMEAL\\Documentos\\ALB\\Projetos - (Pessoais)\\ALB.BLOG\\ALB.BLOG.BLO\\ALB.BLOG.BLO.csproj": {
+                "projectPath": "C:\\Users\\amelobat\\OneDrive - NTT DATA EMEAL\\Documentos\\ALB\\Projetos - (Pessoais)\\ALB.BLOG\\ALB.BLOG.BLO\\ALB.BLOG.BLO.csproj"
+              },
+              "C:\\Users\\amelobat\\OneDrive - NTT DATA EMEAL\\Documentos\\ALB\\Projetos - (Pessoais)\\ALB.BLOG\\ALB.BLOG.DAL\\ALB.BLOG.DAL.csproj": {
+                "projectPath": "C:\\Users\\amelobat\\OneDrive - NTT DATA EMEAL\\Documentos\\ALB\\Projetos - (Pessoais)\\ALB.BLOG\\ALB.BLOG.DAL\\ALB.BLOG.DAL.csproj"
+              },
               "C:\\Users\\amelobat\\OneDrive - NTT DATA EMEAL\\Documentos\\ALB\\Projetos - (Pessoais)\\ALB.BLOG\\ALB.BLOG.DOMAIN\\ALB.BLOG.DOMAIN.csproj": {
                 "projectPath": "C:\\Users\\amelobat\\OneDrive - NTT DATA EMEAL\\Documentos\\ALB\\Projetos - (Pessoais)\\ALB.BLOG\\ALB.BLOG.DOMAIN\\ALB.BLOG.DOMAIN.csproj"
               },

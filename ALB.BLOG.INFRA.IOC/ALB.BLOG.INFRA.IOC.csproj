@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ALB.BLOG.BLO\ALB.BLOG.BLO.csproj" />
+    <ProjectReference Include="..\ALB.BLOG.DAL\ALB.BLOG.DAL.csproj" />
     <ProjectReference Include="..\ALB.BLOG.DOMAIN\ALB.BLOG.DOMAIN.csproj" />
     <ProjectReference Include="..\ALB.BLOG.INFRA\ALB.BLOG.INFRA.csproj" />
   </ItemGroup>

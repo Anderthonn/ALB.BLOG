@@ -1,4 +1,6 @@
-﻿using ALB.BLOG.DOMAIN.Models;
+﻿using ALB.BLOG.DAL.Interfaces;
+using ALB.BLOG.DAL.Querys;
+using ALB.BLOG.DOMAIN.Models;
 using ALB.BLOG.INFRA.DbContextConnections;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +20,9 @@ namespace ALB.BLOG.INFRA.IOC.InfrastructureSettings
 
             //Identity configuration.
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+            //Dependency injection of the DAO layer.
+            services.AddScoped<IEmailDAO, EmailDAO>();
 
             return services;
         }

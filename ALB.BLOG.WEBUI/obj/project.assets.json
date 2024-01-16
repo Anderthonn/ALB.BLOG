@@ -1168,6 +1168,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "ALB.BLOG.BLO": "1.0.0",
+          "ALB.BLOG.DAL": "1.0.0",
           "ALB.BLOG.DOMAIN": "1.0.0",
           "ALB.BLOG.INFRA": "1.0.0",
           "Microsoft.AspNetCore.Identity.UI": "8.0.1",
