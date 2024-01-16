@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\ALB.BLOG.WEBUI.props" />
-</Project>
