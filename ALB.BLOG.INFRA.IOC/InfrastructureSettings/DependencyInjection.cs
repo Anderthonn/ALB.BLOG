@@ -24,6 +24,7 @@ namespace ALB.BLOG.INFRA.IOC.InfrastructureSettings
             //Dependency injection of the DAO layer.
             services.AddScoped<IEmailDAO, EmailDAO>();
             services.AddScoped<IPageDAO, PageDAO>();
+            services.AddScoped<IPostDAO, PostDAO>();
 
             return services;
         }
