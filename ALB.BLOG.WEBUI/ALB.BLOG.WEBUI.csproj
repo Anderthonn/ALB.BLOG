@@ -12,4 +12,9 @@
     <Folder Include="Views\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ALB.BLOG.BLO\ALB.BLOG.BLO.csproj" />
+    <ProjectReference Include="..\ALB.BLOG.INFRA.IOC\ALB.BLOG.INFRA.IOC.csproj" />
+  </ItemGroup>
+
 </Project>
