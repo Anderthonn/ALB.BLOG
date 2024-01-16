@@ -25,6 +25,7 @@ namespace ALB.BLOG.INFRA.IOC.InfrastructureSettings
             services.AddScoped<IEmailDAO, EmailDAO>();
             services.AddScoped<IPageDAO, PageDAO>();
             services.AddScoped<IPostDAO, PostDAO>();
+            services.AddScoped<ISettingDAO, SettingDAO>();
 
             return services;
         }
