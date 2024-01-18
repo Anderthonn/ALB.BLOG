@@ -44,7 +44,7 @@ ALB is a blog built on ASP.NET Core MVC and SQL Server, offering a range of feat
 
 ## Layout:
 
-1. ![Exemplo](https://i.postimg.cc/kRRLPGCY/1.png)
-1. ![Exemplo](https://i.postimg.cc/jCDp7gf6/2.png)
-1. ![Exemplo](https://i.postimg.cc/ZC3XfWVC/3.png)
-1. ![Exemplo](https://i.postimg.cc/sMrqb3NK/4.png)
+1. ![Exemplo](https://i.postimg.cc/Hn6m58hm/1.png)
+1. ![Exemplo](https://i.postimg.cc/66ctFF5P/2.png)
+1. ![Exemplo](https://i.postimg.cc/Qxnsd57k/3.png)
+1. ![Exemplo](https://i.postimg.cc/Sx242s70/4.png)
