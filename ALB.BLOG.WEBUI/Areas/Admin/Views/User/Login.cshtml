@@ -1,0 +1,55 @@
+﻿@model ALB.BLOG.BLO.ViewModels.LoginVM
+
+@{
+    Layout = "_LoginLayout";
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    .bg-login-image {
+        background: url(" .. /../Dashboard/img/bg-login.jpg") !important;
+        background-position: center !important;
+        background-size: cover !important;
+    }
+</style>
+<!-- Outer Row -->
+<div class="container" style="height: 95%!important;">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5 text-center">
+                                <form class="user" method="post" asp-action="Login">
+                                    <div class="form-group">
+                                        <input asp-for="Username" type="text" class="form-control form-control-user"
+                                               id="exampleInputEmail" aria-describedby="emailHelp"
+                                               placeholder="Username">
+                                        <span asp-validation-for="Username" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <input asp-for="Password" type="password" class="form-control form-control-user"
+                                               id="exampleInputPassword" placeholder="Password">
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox small">
+                                            <input asp-for="RememberMe" type="checkbox" class="custom-control-input" id="customCheck">
+                                            <label class="custom-control-label" for="customCheck">
+                                                Remember Me
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <input type="submit" class="btn btn-user btn-block" style="background-color: #00b8e4; color: white;" value="Login">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

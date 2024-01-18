@@ -1,4 +1,6 @@
-﻿using ALB.BLOG.DOMAIN.Models;
+﻿using ALB.BLOG.BLO.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace ALB.BLOG.BLO.Interfaces
 {
@@ -9,7 +11,15 @@ namespace ALB.BLOG.BLO.Interfaces
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        bool SendEmail(Email email);
+        bool SendEmail(EmailVM emailVM);
+
+        /// <summary>
+        /// Image upload.
+        /// </summary>
+        /// <param name="webHostEnvironment"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        string UploadImage(IWebHostEnvironment webHostEnvironment, IFormFile file);
 
         /// <summary>
         /// Validation of the MAC address.

@@ -15,6 +15,24 @@ namespace ALB.BLOG.DAL.Querys
         }
 
         /// <summary>
+        /// Helper for updating a page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        public void Entity(int id, Page page)
+        {
+            var existingEntity = _context.Pages.Local.FirstOrDefault(e => e.Id == id);
+
+            if (existingEntity != null)
+            {
+                _context.Entry(existingEntity).State = EntityState.Detached;
+            }
+
+            _context.Attach(page);
+            _context.Entry(page).State = EntityState.Modified;
+        }
+
+        /// <summary>
         /// Get the publication page.
         /// </summary>
         /// <returns></returns>

@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="X.PagedList" Version="8.4.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ALB.BLOG.DAL\ALB.BLOG.DAL.csproj" />
   </ItemGroup>
 

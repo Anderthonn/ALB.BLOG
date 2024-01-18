@@ -5,6 +5,13 @@ namespace ALB.BLOG.DAL.Interfaces
     public interface IPageDAO
     {
         /// <summary>
+        /// Helper for updating a page.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="page"></param>
+        void Entity(int id, Page page);
+
+        /// <summary>
         /// Get the publication page.
         /// </summary>
         /// <returns></returns>

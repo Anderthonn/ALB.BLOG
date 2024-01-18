@@ -1,4 +1,4 @@
-﻿using ALB.BLOG.DOMAIN.Models;
+﻿using ALB.BLOG.BLO.ViewModels;
 
 namespace ALB.BLOG.BLO.Interfaces
 {
@@ -9,6 +9,6 @@ namespace ALB.BLOG.BLO.Interfaces
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        Task<string> SendEmail(Email email);
+        Task<string> SendEmail(EmailVM emailVM);
     }
 }

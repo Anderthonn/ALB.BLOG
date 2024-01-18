@@ -1,0 +1,53 @@
+﻿@model ALB.BLOG.BLO.ViewModels.PageVM
+
+@{
+    ViewData["Title"] = "About";
+
+    string pageThumbnail = "";
+
+    if (string.IsNullOrEmpty(Model.ThumbnailUrl))
+    {
+        pageThumbnail = "/blog/assets/img/about-bg.jpg";
+    }
+    else
+    {
+        pageThumbnail = "/thumbnails/" + Model.ThumbnailUrl;
+    }
+}
+
+<!-- Page Header-->
+<header class="masthead bg-black" style="background-image: url('@pageThumbnail')">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="page-heading">
+                    <h1>@Model.Title</h1>
+                    <span class="subheading">@Model.ShortDescription</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="alb-container">
+    <div class="caixa-esquerda">
+        <div class="name_titulo">
+            <h3>Anderthonn Batista</h3>
+        </div>
+        <p>
+            <b>Com mais de 6 anos de experiência em programação e desenvolvimento,</b> sou reconhecido por contribuições notáveis na criação de sites, aplicações web e sistemas desktop. Iniciei minha carreira em análise de sistemas em 2017, desenvolvendo um sistema administrativo para uma empresa de painéis solares como freelancer. Desde então, meu trabalho abrange uma variedade de projetos, proporcionando amplo conhecimento em diversas linguagens de programação.
+            <br>
+            <br>
+            <b>Meu blog é uma plataforma dedicada à disseminação e compartilhamento de conhecimentos na área da tecnologia.</b> Ao longo dos anos, meu foco se expandiu para consultoria, desenvolvimento de negócios e programação, enquanto continuo apreciando desafios e ideias inovadoras. A paixão pela tecnologia se reflete no compromisso de oferecer soluções de alta qualidade, alinhadas às necessidades dos clientes e usuários.</b>
+        </p>
+    </div>
+    <div class="caixa-direita"></div>
+</div>
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                @Html.Raw(Model.Description)
+            </div>
+        </div>
+    </div>
+</main>

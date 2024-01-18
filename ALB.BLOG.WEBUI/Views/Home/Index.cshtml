@@ -1,0 +1,128 @@
+﻿@model ALB.BLOG.BLO.ViewModels.HomeVM
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+
+@{
+    ViewData["Title"] = "Home Page";
+
+    string thumbnailUrl = "";
+
+    if (string.IsNullOrEmpty(Model.ThumbnailUrl))
+    {
+        thumbnailUrl = "/blog/assets/img/home-bg.jpg";
+    }
+    else
+    {
+        thumbnailUrl = "/thumbnails/" + Model.ThumbnailUrl;
+    }
+}
+
+<!-- Page Header -->
+<header class="masthead bg-black" style="background-image: url('@thumbnailUrl');">
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>@Model.Title</h1>
+                    <span class="subheading">@Model.ShortDescription</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>    
+<div class="container bg-dark px-4 px-lg-4">    
+    <div class="row gx-4 gx-lg-4 justify-content-center">
+        <form action="@Url.Action("Index", "Home")" method="get" onsubmit="return onSearchFormSubmit()">
+            <div class="d-flex justify-content-center mb-5 div-alb-form-post">
+                <div class="w-50 d-flex">
+                    <input type="text" class="form-control smaller-input" name="searchFilter" id="formGroupExampleInput" placeholder="Procure Posts aqui:">
+                    <button type="submit" class="btn btn-input btn-alb">Pesquisar</button>                
+                </div>
+            </div>
+        </form>
+        <div class="container px-4 px-lg-4">
+            <div class="justify-content-center mb-5 div-alb-post" id="resultContainer">
+                <div class="row">
+                    @foreach (var post in Model.Posts!)
+                    {
+                        <div class="col-md-6 col-alb">
+                            <!-- Post preview-->
+                            <div class="post-preview">
+                                <a asp-controller="Blog" asp-action="Post" asp-route-slug="@post.Slug">
+                                    <h2 class="post-title">@post.Title</h2>
+                                    <h3 class="post-subtitle">@post.ShortDescription</h3>
+                                </a>
+                                <p class="post-meta">
+                                    Posted by
+                                    <a class="alb-item-nav" href="#!">@post.ApplicationUser!.FirstName @post.ApplicationUser!.LastName</a>
+                                    on @post.CreatedDate.ToShortDateString()
+                                </p>
+                            </div>
+                            <!-- Divider-->
+                            <hr class="my-4 hr-alb">
+                        </div>
+                    }
+                </div>
+            </div>
+            <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4 mb-5">
+                <ul class="pagination">
+
+                    <li class="page-item @((Model?.Posts.PageNumber == 1) ? "disabled" : "")">
+                        <a class="page-link rounded-left bg-dark text-light border-1" href="#" aria-label="Previous" onclick="changePage(@Model?.Posts.PageNumber - 1)">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    @for (int i = 1; i <= Model?.Posts.PageCount; i++)
+                    {
+                        <li class="page-item @((Model?.Posts.PageNumber == i) ? "active" : "")">
+                            <a class="page-link bg-dark text-light border-1 page-number-alb" href="#" onclick="changePage(@i)">@i</a>
+                        </li>
+                    }
+
+                    <li class="page-item @((Model?.Posts.PageNumber == Model?.Posts.PageCount) ? "disabled" : "")">
+                        <a class="page-link rounded-right bg-dark text-light border-1" href="#" aria-label="Next" onclick="changePage(@Model?.Posts.PageNumber + 1)">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<script>
+    function changePage(page) {
+        var url = '@Url.Action("Index", new { page = "__page__", sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter })';
+        url = url.replace('__page__', page);
+
+        window.location.href = url;
+    }
+
+     function onSearchFormSubmit() {
+    var searchFilter = document.getElementById("formGroupExampleInput").value;
+
+    // Verifica se o campo de pesquisa está vazio
+    if (searchFilter.trim() === "") {
+        alert("Por favor, digite um termo de pesquisa.");
+        return;
+    }
+
+    // Adiciona lógica adicional aqui, se necessário
+
+    // Envia uma solicitação AJAX para o servidor
+    $.ajax({
+        type: "GET",
+        url: '@Url.Action("Index", "Home")',
+        data: { searchFilter: searchFilter },
+        success: function (data) {
+            // Atualiza a parte da página que exibe os resultados
+            $('#resultContainer').html(data);
+        },
+        error: function (error) {
+            console.error(error);
+        }
+    });
+}
+</script>

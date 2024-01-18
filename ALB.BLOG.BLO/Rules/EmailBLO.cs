@@ -1,4 +1,5 @@
 ﻿using ALB.BLOG.BLO.Interfaces;
+using ALB.BLOG.BLO.ViewModels;
 using ALB.BLOG.DAL.Interfaces;
 using ALB.BLOG.DOMAIN.Models;
 
@@ -23,7 +24,7 @@ namespace ALB.BLOG.BLO.Rules
         /// <param name="email"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<string> SendEmail(Email email)
+        public async Task<string> SendEmail(EmailVM emailVM)
         {
             try
             {
@@ -31,10 +32,10 @@ namespace ALB.BLOG.BLO.Rules
                 var macAddress = "";
                 DateTime dateNow = DateTime.Now.AddHours(1);
 
-                if (email == null)
+                if (emailVM == null)
                     throw new Exception("Fill in the details before sending the email!");
 
-                var returnEnvioEmail = _generalBlogServices.SendEmail(email);
+                var returnEnvioEmail = _generalBlogServices.SendEmail(emailVM);
 
                 if (returnEnvioEmail == false)
                     throw new Exception("Email was not sent, please try again in a few minutes!");
@@ -60,9 +61,9 @@ namespace ALB.BLOG.BLO.Rules
                     throw new Exception("An error occurred, please try later!");
                 }
 
-                emailAdd = new Email(email.Name, email.UserEmail, email.Subject, email.Message, email.MacAddress, DateTime.Now);
+                emailAdd = new Email(emailVM.Name, emailVM.UserEmail, emailVM.Subject, emailVM.Message, emailVM.MacAddress, DateTime.Now);
 
-                await Create(email);
+                await Create(emailAdd);
 
                 return "Email successfully sent!";
             }

@@ -1,0 +1,73 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common
+@model IPagedList<ALB.BLOG.BLO.ViewModels.PostVM>
+@{
+    ViewData["Title"] = "List Of Posts";
+}
+
+<div class="container-fluid">
+    <a class="btn mb-1 btn-alb-page" asp-action="Create" asp-controller="Post" asp-area="Admin"><i class="bi bi-plus-circle-fill"></i> Add Post</a>
+    <div class="card">
+        <div class="card-header card-alb-name">
+            <h4 class="card-title text-white">List of Posts</h4>
+        </div>
+        <div class="card-body card-alb-body">
+            @foreach(var post in Model)
+            {
+                <div class="rounded mb-4 bg-white p-2">
+                    <div class="row">
+                        <div class="col-2 d-flex justify-content-center flex-column">
+                            @if (post.ThumbnailUrl == null)
+                            {
+                                <img class="img-fluid" src="~/thumbnails/default_image.png" style="object-fit:cover; height:100%; width:100%">
+
+                            }
+                            else
+                            {
+                                <img class="img-fluid" src="~/thumbnails/@post.ThumbnailUrl" style="object-fit:cover; height:100%; width:100%">
+                            }
+                        </div>
+                       <div class="col-5 d-flex justify-content-center flex-column">
+                            <h4 style="font-size:1.5rem; font-weight:bolder;" class="text-black fw-bold">@post.Title</h4>
+                            <p>@post.CreatedDate</p>
+                        </div>
+                        <div class="col-5 text-right d-flex justify-content-center flex-column">
+                            <h4 style="font-size:1rem;" class="fw-bold">@post.AuthorName</h4>
+                            <div class="d-flex justify-content-end align-items-center">
+                                <a class="btn btn-warning " asp-area="Admin" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" method="post">Edit</a>|
+                                <form class="" asp-area="Admin" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" method="post" onsubmit="return confirm('Do you want to delete this post?')">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            }
+        </div>
+        <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4">
+            <ul class="pagination">
+
+                <li class="page-item @((Model?.PageNumber == 1) ? "disabled" : "")">
+                    <a class="page-link rounded-left bg-dark text-light border-1" href="#" aria-label="Previous" onclick="changePage(@Model?.PageNumber - 1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+
+                @for (int i = 1; i <= Model?.PageCount; i++)
+                {
+                    <li class="page-item @((Model?.PageNumber == i) ? "active" : "")">
+                        <a class="page-link bg-dark text-light border-1 alb-pag-post" href="#" onclick="changePage(@i)">@i</a>
+                    </li>
+                }
+
+                <li class="page-item @((Model?.PageNumber == Model?.PageCount) ? "disabled" : "")">
+                    <a class="page-link rounded-right bg-dark text-light border-1" href="#" aria-label="Next" onclick="changePage(@Model?.PageNumber + 1)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</div>

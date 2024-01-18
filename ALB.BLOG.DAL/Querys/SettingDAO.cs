@@ -26,17 +26,6 @@ namespace ALB.BLOG.DAL.Querys
         }
 
         /// <summary>
-        /// Delete a configuration.
-        /// </summary>
-        /// <param name="setting"></param>
-        /// <returns></returns>
-        public async Task Delete(Setting setting)
-        {
-            _context.Settings.Remove(setting);
-            await _context.SaveChangesAsync();
-        }
-
-        /// <summary>
         /// Helper for updating a configuration.
         /// </summary>
         /// <param name="id"></param>

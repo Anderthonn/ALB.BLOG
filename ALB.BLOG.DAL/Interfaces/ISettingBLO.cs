@@ -12,13 +12,6 @@ namespace ALB.BLOG.DAL.Interfaces
         Task Created(Setting setting);
 
         /// <summary>
-        /// Delete a configuration.
-        /// </summary>
-        /// <param name="setting"></param>
-        /// <returns></returns>
-        Task Delete(Setting setting);
-
-        /// <summary>
         /// Helper for updating a configuration.
         /// </summary>
         /// <param name="id"></param>

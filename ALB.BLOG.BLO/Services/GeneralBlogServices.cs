@@ -1,5 +1,7 @@
 ﻿using ALB.BLOG.BLO.Interfaces;
-using ALB.BLOG.DOMAIN.Models;
+using ALB.BLOG.BLO.ViewModels;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
@@ -20,19 +22,19 @@ namespace ALB.BLOG.BLO.Services
         /// </summary>
         /// <param name="email"></param>
         /// <returns></returns>
-        public bool SendEmail(Email email)
+        public bool SendEmail(EmailVM emailVM)
         {
             try
             {
                 MailMessage oEmail = new MailMessage();
-                MailAddress sDe = new MailAddress(email.UserEmail);
+                MailAddress sDe = new MailAddress(emailVM.UserEmail);
 
                 oEmail.To.Add(_configuration.GetSection("ConnectionEmail").GetSection("Email").Value);
                 oEmail.From = sDe;
                 oEmail.Priority = MailPriority.Normal;
                 oEmail.IsBodyHtml = false;
-                oEmail.Subject = email.Subject;
-                oEmail.Body = "Contact name: " + email.Name + "Contact E-mail:" + email.UserEmail + "Subject: " + email.Subject + "Message: " + email.Message;
+                oEmail.Subject = emailVM.Subject;
+                oEmail.Body = "Contact name: " + emailVM.Name + "Contact E-mail:" + emailVM.UserEmail + "Subject: " + emailVM.Subject + "Message: " + emailVM.Message;
 
                 SmtpClient oEnviar = new SmtpClient();
 
@@ -47,6 +49,36 @@ namespace ALB.BLOG.BLO.Services
             catch
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// Image upload.
+        /// </summary>
+        /// <param name="webHostEnvironment"></param>
+        /// <param name="file"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public string UploadImage(IWebHostEnvironment webHostEnvironment, IFormFile file)
+        {
+            try
+            {
+                string uniqueFileName = "";
+
+                var folderPath = Path.Combine(webHostEnvironment.WebRootPath, "thumbnails");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                var filePath = Path.Combine(folderPath, uniqueFileName);
+
+                using (FileStream fileStream = System.IO.File.Create(filePath))
+                {
+                    file.CopyTo(fileStream);
+                }
+
+                return uniqueFileName;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 
