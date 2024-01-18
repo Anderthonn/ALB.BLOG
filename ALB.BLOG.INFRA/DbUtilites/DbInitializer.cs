@@ -40,16 +40,16 @@ namespace ALB.BLOG.INFRA.DbUtilites
 
                 var listOfPages = new List<Page>()
                 {
-                    new Page("Post", null, null, "post", null),
+                    new Page("Post", "", "", "post", ""),
 
-                    new Page("About Us", null, null, "about", null),
+                    new Page("About Us", "", "", "about", ""),
 
-                    new Page("Contact Us", null, null, "contact", null),
+                    new Page("Contact Us", "", "", "contact", ""),
                  };
 
                 _context.Pages!.AddRange(listOfPages);
 
-                var setting = new Setting("Site Name", "Site Title", "Short Description of site", null, null, null, null, null);
+                var setting = new Setting("Site Name", "Site Title", "Short Description of site", "", "", "", "", "");
 
                 _context.Settings!.Add(setting);
                 _context.SaveChanges();

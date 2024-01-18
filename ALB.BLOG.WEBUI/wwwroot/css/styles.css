@@ -39,8 +39,17 @@ img.img-log-alb {
 }
 
 a.nav-a-alb {
+    color: white !important;
     font-weight: normal !important;
     font-size: 0.95rem !important;
+}
+
+i.bi {
+    color: white !important;
+}
+
+i.bi:hover {
+    color: #00BAE4 !important;
 }
 
 li.alb-item-nav {
@@ -82,9 +91,9 @@ a.alb-item-nav {
     color: white;
 }
 
-    a.alb-item-nav:hover {
-        color: #00BAE4 !important;
-    }
+a.alb-item-nav:hover {
+    color: #00BAE4 !important;
+}
 
 div.div-alb-form-post {
     width: 100%;
@@ -141,7 +150,8 @@ a.page-number-alb {
     background-image: url(../../../blog/assets/img/alg_retrato.svg);
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 40% auto;
+    background-size: contain; /* Alterado para contain */
+    min-height: 300px; /* Adicionado min-height */
     margin-left: 20px;
 }
 
