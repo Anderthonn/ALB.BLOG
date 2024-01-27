@@ -20,8 +20,8 @@ namespace ALB.BLOG.INFRA.IOC.InfrastructureSettings
           IConfiguration configuration)
         {
             //Database context configuration.
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("DbConnectionString"),
-                m => m.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseMySQL(configuration.GetConnectionString("DbConnectionString"),
+                                     m => m.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 
             //Identity configuration.
             services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();

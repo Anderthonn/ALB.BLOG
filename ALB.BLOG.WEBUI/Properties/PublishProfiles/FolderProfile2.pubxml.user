@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\Publish_Alb</_PublishTargetUrl>
+    <History>True|2024-01-27T00:19:43.3307538Z;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DbConnectionString">
+      <Value>Server=localhost%3bDatabase=ALB_BLOG%3bUser=AnderthonnB%3bPassword=20032016%3bPersistSecurityInfo=True%3bConvertZeroDateTime=True%3bAllowZeroDateTime=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>
