@@ -1,63 +1,163 @@
 ﻿@model ALB.BLOG.BLO.ViewModels.CreatePostVM
-
+@using ALB.BLOG.BLO.Interfaces
+@inject ICategoryBLO _categoryBLO
 @{
-    ViewData["Title"] = "Create Post";
+    ViewData["Title"] = "Criar Publicação";
+    int i = 1;
 }
 
 <div class="container-fluid">
     <a class="btn mb-1 btn-back-alb" asp-action="Index" asp-controller="Post"><i class="bi bi-arrow-return-left"></i></a>
     <div class="card">
         <div class="card-header card-alb-name">
-            <h4 class="card-title text-white">New Post</h4>
+            <h4 class="card-title text-white">Nova Publicação</h4>
         </div>
         <div class="card-body">
             <form asp-action="Create" asp-controller="Post" asp-area="Admin" enctype="multipart/form-data">
 
                 <div class="row mb-2">
                     <div class="col-9">
-                    <div class="mb-2">
-                        <label>Title</label>
-                        <input type="text" asp-for="Title" class="form-control" />
-                        <span asp-validation-for="Title" class="text-danger"></span>
+                        <div class="mb-2">
+                            <label>Título</label>
+                            <input type="text" asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label>Pequena Descrição</label>
+                            <input type="text" asp-for="ShortDescription" class="form-control" />
+                            <span asp-validation-for="ShortDescription" class="text-danger"></span>
+                        </div>
+                        <div class="dropdown mb-2 ms-2">
+                            <button class="btn btn-secondary dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 30%; height: 35px; background-color: black; text-align: center;">
+                                Categorias
+                            </button>
+                            <ul class="dropdown-menu" style="width: 30%; font-size: 1rem;">
+                                @foreach (var category in await _categoryBLO.GetAllCategory())
+                                {
+                                    <li class="mb-2 d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <input type="checkbox" name="SelectedCategories" id="@($"option{i}")" class="form-check-input" value="@category.Id" style="margin-left: 1rem; border-radius: 0.35rem;">
+                                            <label for="@($"option{i}")" class="form-check-label" style="margin-left: 3rem;">@category.Name</label>
+                                        </div>
+                                        <button class="btn btn-secondary rounded-circle d-flex align-items-center justify-content-center ml-auto" type="button" style="width: 30px; height: 30px; background-color: red; margin: 0 1rem" onclick="deleteCategory(@category.Id)">
+                                            <i class="bi bi-x-circle-fill"></i>
+                                        </button>
+                                    </li>
+                                    i++;
+                                }
+                            </ul>
+                        </div>
+                        <button class="btn btn-secondary d-flex align-items-center mb-2" type="button" style="height: 35px; background-color: #00BAE4; width: 30%;" onclick="toggleTagCard()">
+                            <i class="bi bi-plus-circle-fill"></i> Adicionar Tag
+                        </button>
+                        <div class="card mb-2" id="tagCard" style="width: 18rem; display: none;">
+                            <div class="card-body">
+                                <h5 class="card-title" style="font-size: 1rem;">Criar Tag</h5>
+                                <input type="text" id="tagName" class="form-control mb-2" placeholder="Tag Name" />
+                                <label for="cor">Escolha uma cor:</label>
+                                <input type="color" id="cor" name="cor" class="form-control mb-2">
+                                <button type="button" class="btn w-100 btn-alb-page" onclick="saveTag()">Save</button>
+                            </div>
+                        </div>
+                        <div class="mb-2">
+                            <label>Descrição</label>
+                            <textarea id="richEditor" asp-for="Description" class="form-control" rows="8"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
                     </div>
-                    <div class="mb-2">
-                        <label>Short Description</label>
-                        <input type="text" asp-for="ShortDescription" class="form-control" />
-                        <span asp-validation-for="ShortDescription" class="text-danger"></span>
-                    </div>
-                    <div class="mb-2">
-                        <label>Description</label>
-                         <textarea id="richEditor" asp-for="Description" class="form-control" rows="8"></textarea>
-                        <span asp-validation-for="Description" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="mb-2">
+                    <div class="col-3">
+                        <div class="mb-2">
                             <img src="~/thumbnails/default_image.png" class="img-fluid" id="thumbnail" />
-                    </div>
-                    <div class="mb-2">
-                        <label>Thumbnail</label>
-                        <input type="file" asp-for="Thumbnail" class="custom-file"/>
-                        <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="mb-2">
+                            <label>Thumbnail</label>
+                            <input type="file" asp-for="Thumbnail" class="custom-file" />
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
                     </div>
                 </div>
-                </div>
-                
+
                 <div class="mb-2">
-                    <button type="submit" class="btn w-100 btn-alb-page">Save</button>
+                    <button type="submit" class="btn w-100 btn-alb-page">Salvar</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-@section Scripts{
-    <partial name="_ValidationScriptsPartial"/>
     <script>
+        $('.dropdown-toggle').dropdown();
+
         $(".custom-file").on("change", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-            document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0])
+            document.getElementById('thumbnail').src = window.URL.createObjectURL(this.files[0]);
         });
+
+        $("form").submit(function () {
+            var selectedCategories = [];
+
+            $("[name='categories']:checked").each(function () {
+                selectedCategories.push(parseInt($(this).val()));
+            });
+
+            $("#SelectedCategories").val(JSON.stringify(selectedCategories));
+        });
+
+        function toggleTagCard() {
+            var tagCard = $("#tagCard");
+            tagCard.toggle();
+        }
+
+        async function saveTag() {
+            var tagName = $("#tagName").val();
+            var tagColor = $("#cor").val();
+
+            try {
+                await $.ajax({
+                    url: '/api/Category/Create',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ Name: tagName, Color: tagColor }),
+                    success: function () {
+                        alert("Categoria criada com sucesso!");
+
+                        $("#tagName").val("");
+                        $("#cor").val("#000000");
+
+                        toggleTagCard();
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert('Erro ao criar categoria:', xhr.responseJSON.error);
+                    }
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function deleteCategory(categoryId) {
+            if (confirm("Tem certeza que deseja excluir esta categoria?")) {
+                try {
+                    await $.ajax({
+                        url: '/api/Category/Delete/' + categoryId,
+                        method: 'DELETE',
+                        success: function () {
+                            // Recarregar as categorias após excluir uma tag
+                            loadCategories();
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            alert('Erro ao excluir categoria:', xhr.responseJSON.error);
+                        }
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        }
     </script>
 }

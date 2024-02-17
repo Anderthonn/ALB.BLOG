@@ -47,7 +47,7 @@
             <li class="nav-item active">
                 <a class="nav-link" asp-action="Index" asp-controller="Post" asp-area="Admin">
                     <i class="bi bi-speedometer alb-nav-icon"></i>
-                    <span>Post</span>
+                    <span>Publicações</span>
                 </a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -57,7 +57,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" asp-action="Index" asp-controller="User" asp-area="Admin">
                         <i class="bi bi-person-circle alb-nav-icon"></i>
-                        <span>User</span>
+                        <span>Usuários</span>
                     </a>
                 </li>
                 <!-- Nav Item - Utilities Collapse Menu -->
@@ -65,13 +65,13 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                    aria-expanded="true" aria-controls="collapseUtilities">
                         <i class="bi bi-file-earmark-fill alb-nav-icon"></i>
-                        <span>Pages</span>
+                        <span>Páginas</span>
                     </a>
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div class="py-2 collapse-inner rounded div-alb-drop">
-                            <h6 class="collapse-header alb-drop-text">Custom Utilities:</h6>
-                            <a class="collapse-item alb-drop-text" asp-area="Admin" asp-controller="Page" asp-action="About">About</a>
-                            <a class="collapse-item alb-drop-text" asp-area="Admin" asp-controller="Page" asp-action="Contact">Contact</a>
+                            <h6 class="collapse-header alb-drop-text">Personaliza:</h6>
+                            <a class="collapse-item alb-drop-text" asp-area="Admin" asp-controller="Page" asp-action="About">Sobre</a>
+                            <a class="collapse-item alb-drop-text" asp-area="Admin" asp-controller="Page" asp-action="Contact">Contato</a>
                         </div>
                     </div>
                 </li>
@@ -79,7 +79,7 @@
                 <li class="nav-item active">
                     <a class="nav-link" asp-action="Index" asp-controller="Setting" asp-area="Admin">
                         <i class="bi bi-gear-fill alb-nav-icon"></i>
-                        <span>Setting</span>
+                        <span>Configurações</span>
                     </a>
                 </li>
                 <!-- Divider -->
@@ -162,7 +162,7 @@
     <script src="~/dashboard/js/demo/chart-area-demo.js"></script>
     <script src="~/dashboard/js/demo/chart-pie-demo.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/7qjkjvz7eegr5schf3b8iwvemcxjb82zvn5nvbm02u8l4xkb/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1//tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
         $(document).ready(function () {
             $('#myTable').DataTable();
@@ -172,7 +172,7 @@
             selector: '#richEditor',
             plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
             toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
-        });
+        });      
     </script>
     @await RenderSectionAsync("Scripts", required: false)
     @await Component.InvokeAsync("Notyf")

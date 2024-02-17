@@ -1,24 +1,24 @@
 ﻿@model ALB.BLOG.BLO.ViewModels.RegisterVM
 
 @{
-    ViewData["Title"] = "Register User";
+    ViewData["Title"] = "Cadastrar Usuário";
 }
 
 <div class="container-fluid">
     <a class="btn mb-1" style="background-color: #00B8E4; color: white; padding: 0.5rem 1rem;" asp-action="Index" asp-controller="User"><i class="bi bi-arrow-return-left"></i></a>
     <div class="card">
         <div class="card-header" style="background-color: #00B8E4;">
-            <h4 class="card-title text-white">Register User</h4>
+            <h4 class="card-title text-white">Cadastrar Usuário</h4>
         </div>
         <div class="card-body">
             <form asp-action="Register" asp-controller="User" asp-area="Admin">
                 <div class="mb-2">
-                    <label>First Name</label>
+                    <label>Primeiro Nome</label>
                     <input type="text" asp-for="FirstName" class="form-control"/>
                     <span asp-validation-for="FirstName" class="text-danger"></span>
                 </div>
                 <div class="mb-2">
-                    <label>Last Name</label>
+                    <label>Sobrenome</label>
                     <input type="text" asp-for="LastName" class="form-control"/>
                     <span asp-validation-for="LastName" class="text-danger"></span>
                 </div>
@@ -28,21 +28,21 @@
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="mb-2">
-                    <label>Username</label>
+                    <label>Nome de Usuário</label>
                     <input type="text" asp-for="UserName" class="form-control" />
                     <span asp-validation-for="UserName" class="text-danger"></span>
                 </div>
                 <div class="mb-2">
-                    <label>Password</label>
+                    <label>Senha</label>
                     <input type="password" asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
                 <div class="mb-2">
                     <input type="checkbox" class="custom-checkbox" asp-for="IsAdmin"/>
-                    <label>Is Admin?</label>
+                    <label>É Administrador?</label>
                 </div>
                 <div class="mb-2">
-                    <button type="submit" class="btn w-100" style="background-color: green; color: white;">Register</button>
+                    <button type="submit" class="btn w-100" style="background-color: green; color: white;">Cadastrar</button>
                 </div>
             </form>
         </div>

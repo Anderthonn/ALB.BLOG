@@ -15,14 +15,16 @@ namespace ALB.BLOG.BLO.Rules
         private readonly IApplicationUserBLO _applicationUserBLO;
         private readonly IGeneralBlogServices _generalBlogServices;
         private readonly IPostDAO _postDAO;
+        private readonly IPostCategoryBLO _postCategoryBLO;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public PostBLO(UserManager<ApplicationUser> userManager, IApplicationUserBLO applicationUserBLO, IGeneralBlogServices generalBlogServices, IPostDAO postDAO, IWebHostEnvironment webHostEnvironment)
+        public PostBLO(UserManager<ApplicationUser> userManager, IApplicationUserBLO applicationUserBLO, IGeneralBlogServices generalBlogServices, IPostDAO postDAO, IPostCategoryBLO postCategoryBLO, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _applicationUserBLO = applicationUserBLO;
             _generalBlogServices = generalBlogServices;
             _postDAO = postDAO;
+            _postCategoryBLO = postCategoryBLO;
             _webHostEnvironment = webHostEnvironment;
         }
 
@@ -39,6 +41,7 @@ namespace ALB.BLOG.BLO.Rules
             try
             {
                 Post post;
+                PostCategory postCategory;
                 string slug = null;
                 string thumbnailUrl = null;
 
@@ -55,7 +58,13 @@ namespace ALB.BLOG.BLO.Rules
                 }
 
                 post = new Post(createPostVM.Title, createPostVM.ShortDescription, loggedInUser!.Id, DateTime.Now, createPostVM.Description, slug, thumbnailUrl);
-                await _postDAO.Created(post);
+                var postCreated = await _postDAO.Created(post);
+
+                foreach (var categoryId in createPostVM.SelectedCategories)
+                {
+                    postCategory = new PostCategory(postCreated.Id, categoryId);
+                    await _postCategoryBLO.Create(postCategory);
+                }
             }
             catch (Exception ex)
             {
@@ -135,14 +144,14 @@ namespace ALB.BLOG.BLO.Rules
         /// <param name="searchFilter"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<IPagedList<Post>> GetAllPostSearch(int? page, string? searchFilter = null)
+        public async Task<IPagedList<Post>> GetAllPostSearch(int? page, string? searchFilter = null, int[]? categories = null)
         {
             try
             {
                 int pageSize = 5;
                 int pageNumber = (page ?? 1);
 
-                var listOfPosts = await _postDAO.GetAllPostSearch(searchFilter);
+                var listOfPosts = await _postDAO.GetAllPostSearch(searchFilter, categories);
 
                 return await listOfPosts.ToPagedListAsync(pageNumber, pageSize);
             }
@@ -236,6 +245,7 @@ namespace ALB.BLOG.BLO.Rules
                     ShortDescription = post.ShortDescription,
                     Description = post.Description,
                     ThumbnailUrl = post.ThumbnailUrl,
+                    SelectedCategories = await _postCategoryBLO.GetCategoriesByIdPost(id)
                 };
 
                 return createPostVM;
@@ -308,6 +318,7 @@ namespace ALB.BLOG.BLO.Rules
                     ThumbnailUrl = post.ThumbnailUrl ?? "/blog/assets/img/home-bg.jpg",
                     Description = post.Description,
                     ShortDescription = post.ShortDescription,
+                    PostCategories = post.PostCategories
                 };
 
                 return blogPostVM;
@@ -329,6 +340,7 @@ namespace ALB.BLOG.BLO.Rules
             try
             {
                 Post post;
+                PostCategory postCategory;
                 string thumbnailUrl = null;
 
                 var getPost = await _postDAO.GetPostByIdPost(createPostVM.Id);
@@ -349,6 +361,14 @@ namespace ALB.BLOG.BLO.Rules
 
                 Entity(createPostVM.Id, post);
                 await _postDAO.Update(post);
+
+                await _postCategoryBLO.Delete(createPostVM.Id);
+
+                foreach (var categoryId in createPostVM.SelectedCategories)
+                {
+                    postCategory = new PostCategory(createPostVM.Id, categoryId);
+                    await _postCategoryBLO.Create(postCategory);
+                }
 
                 return true;
             }

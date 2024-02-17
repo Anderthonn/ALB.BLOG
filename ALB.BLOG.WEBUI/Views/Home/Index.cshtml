@@ -2,10 +2,12 @@
 @using X.PagedList
 @using X.PagedList.Mvc.Core
 @using X.PagedList.Web.Common
-
+@using ALB.BLOG.BLO.Interfaces
+@inject ICategoryBLO _categoryBLO
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
 
+    int ci = 1;
     string thumbnailUrl = "";
 
     if (string.IsNullOrEmpty(Model.ThumbnailUrl))
@@ -30,33 +32,54 @@
             </div>
         </div>
     </div>
-</header>    
-<div class="container bg-dark px-4 px-lg-4">    
+</header>
+<div class="container bg-dark px-4 px-lg-4">
     <div class="row gx-4 gx-lg-4 justify-content-center">
         <form action="@Url.Action("Index", "Home")" method="get" onsubmit="return onSearchFormSubmit()">
             <div class="d-flex justify-content-center mb-5 div-alb-form-post">
                 <div class="w-50 d-flex">
-                    <input type="text" class="form-control smaller-input" name="searchFilter" id="formGroupExampleInput" placeholder="Procure Posts aqui:">
-                    <button type="submit" class="btn btn-input btn-alb">Pesquisar</button>                
+                    <input type="text" class="form-control smaller-input" name="searchFilter" id="formGroupExampleInput" placeholder="Procure Posts aqui:" style="border-radius: 15px 0px 0px 15px;">
+                    <div class="dropdown mb-2 ms-2">
+                        <button class="btn btn-secondary dropdown-toggle d-flex align-items-center alb-itens-drop" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="width: 100%; height: 35px; background-color: black;">
+                            Categorias
+                        </button>
+                        <ul class="dropdown-menu" style="width: 100%; font-size: 1rem;">
+                            @foreach (var category in await _categoryBLO.GetAllCategory())
+                            {
+                                <li class="mb-2">
+                                    <input type="checkbox" name="categories" id="@($"option{ci}")" class="form-check-input" value="@category.Id" style="margin-left: 1rem; border-radius: 0.35rem;">
+                                    <label for="@($"option{ci}")" class="form-check-label">@category.Name</label>
+                                </li>
+                                ci++;
+                            }
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn btn-input btn-alb ms-2" style="border-radius: 0px 15px 15px 0px;">Pesquisar</button>
                 </div>
             </div>
         </form>
         <div class="container px-4 px-lg-4">
-            <div class="justify-content-center mb-5 div-alb-post" id="resultContainer">
-                <div class="row">
+            <div class="justify-content-center mb-5 div-alb-post-container" id="resultContainer">
+                <div class="div-alb-post" style="width: 75% !important;">
                     @foreach (var post in Model.Posts!)
                     {
-                        <div class="col-md-6 col-alb">
+                        <div class="col-alb">
                             <!-- Post preview-->
                             <div class="post-preview">
                                 <a asp-controller="Blog" asp-action="Post" asp-route-slug="@post.Slug">
                                     <h2 class="post-title">@post.Title</h2>
                                     <h3 class="post-subtitle">@post.ShortDescription</h3>
+                                    @foreach (var category in post.PostCategories)
+                                    {
+                                        <div class="category-badge" style="background-color: @(category?.Category?.Color); width: auto; padding: 0.2% 1%; margin: 0.2%; display: inline-block; border-radius: 5px; margin-bottom: 1rem;">
+                                            <p style="color: white; margin: 0; font-size: 65%">@(category?.Category?.Name)</p>
+                                        </div>
+                                    }
                                 </a>
                                 <p class="post-meta">
-                                    Posted by
+                                    Postado por
                                     <a class="alb-item-nav" href="#!">@post.ApplicationUser!.FirstName @post.ApplicationUser!.LastName</a>
-                                    on @post.CreatedDate.ToShortDateString()
+                                    em @post.CreatedDate.ToShortDateString()
                                 </p>
                             </div>
                             <!-- Divider-->
@@ -65,32 +88,29 @@
                     }
                 </div>
             </div>
-            <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4 mb-5">
-                <ul class="pagination">
-
-                    <li class="page-item @((Model?.Posts.PageNumber == 1) ? "disabled" : "")">
-                        <a class="page-link rounded-left bg-dark text-light border-1" href="#" aria-label="Previous" onclick="changePage(@Model?.Posts.PageNumber - 1)">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-
-                    @for (int i = 1; i <= Model?.Posts.PageCount; i++)
-                    {
-                        <li class="page-item @((Model?.Posts.PageNumber == i) ? "active" : "")">
-                            <a class="page-link bg-dark text-light border-1 page-number-alb" href="#" onclick="changePage(@i)">@i</a>
-                        </li>
-                    }
-
-                    <li class="page-item @((Model?.Posts.PageNumber == Model?.Posts.PageCount) ? "disabled" : "")">
-                        <a class="page-link rounded-right bg-dark text-light border-1" href="#" aria-label="Next" onclick="changePage(@Model?.Posts.PageNumber + 1)">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </nav>
         </div>
+        <nav aria-label="Page navigation" class="d-flex justify-content-center mt-4 mb-5 navegation-alb">
+            <ul class="pagination">
+                <li class="page-item @((Model?.Posts.PageNumber == 1) ? "disabled" : "")">
+                    <a class="page-link rounded-left bg-dark text-light border-1" href="#" aria-label="Previous" onclick="changePage(@Model?.Posts.PageNumber - 1)">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                @for (int i = 1; i <= Model?.Posts.PageCount; i++)
+                {
+                    <li class="page-item @((Model?.Posts.PageNumber == i) ? "active" : "")">
+                        <a class="page-link bg-dark text-light border-1 page-number-alb" href="#" onclick="changePage(@i)">@i</a>
+                    </li>
+                }
+                <li class="page-item @((Model?.Posts.PageNumber == Model?.Posts.PageCount) ? "disabled" : "")">
+                    <a class="page-link rounded-right bg-dark text-light border-1" href="#" aria-label="Next" onclick="changePage(@Model?.Posts.PageNumber + 1)">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
+</div>
 </div>
 <script>
     function changePage(page) {
@@ -100,29 +120,20 @@
         window.location.href = url;
     }
 
-     function onSearchFormSubmit() {
-    var searchFilter = document.getElementById("formGroupExampleInput").value;
+    function onSearchFormSubmit() {
+        var searchFilter = document.getElementById("formGroupExampleInput").value;
 
-    // Verifica se o campo de pesquisa está vazio
-    if (searchFilter.trim() === "") {
-        alert("Por favor, digite um termo de pesquisa.");
-        return;
+        $.ajax({
+            type: "GET",
+            url: '@Url.Action("Index", "Home")',
+            data: { searchFilter: searchFilter },
+            success: function (data) {
+                // Atualiza a parte da página que exibe os resultados
+                $('#resultContainer').html(data);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
     }
-
-    // Adiciona lógica adicional aqui, se necessário
-
-    // Envia uma solicitação AJAX para o servidor
-    $.ajax({
-        type: "GET",
-        url: '@Url.Action("Index", "Home")',
-        data: { searchFilter: searchFilter },
-        success: function (data) {
-            // Atualiza a parte da página que exibe os resultados
-            $('#resultContainer').html(data);
-        },
-        error: function (error) {
-            console.error(error);
-        }
-    });
-}
 </script>

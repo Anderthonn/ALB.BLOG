@@ -22,7 +22,7 @@ namespace ALB.BLOG.BLO.Interfaces
         /// <param name="page"></param>
         /// <param name="searchFilter"></param>
         /// <returns></returns>
-        Task<HomeVM?> GetPageHome(int? page, string? searchFilter = null);
+        Task<HomeVM?> GetPageHome(int? page, string? searchFilter = null, int[]? categories = null);
 
         /// <summary>
         /// Get the post page.

@@ -1,14 +1,14 @@
 ﻿@model ALB.BLOG.BLO.ViewModels.SettingVM
 
 @{
-    ViewData["Title"] = "Site Setting";
+    ViewData["Title"] = "Configurações";
 }
 
 <div class="container-fluid">
     <a class="btn mb-1 btn-back-alb" asp-action="Index" asp-controller="Post"><i class="bi bi-arrow-return-left"></i></a>
     <div class="card">
         <div class="card-header card-alb-name">
-            <h4 class="card-title text-white">Setting</h4>
+            <h4 class="card-title text-white">Configurações</h4>
         </div>
         <div class="card-body">
             <form asp-action="Index" asp-controller="Setting" asp-area="Admin" enctype="multipart/form-data">
@@ -16,34 +16,34 @@
                 <div class="row mb-2">
                     <div class="col-9">
                         <div class="mb-2">
-                            <label>Site Name</label>
+                            <label>Nome do Site</label>
                             <input type="text" asp-for="SiteName" class="form-control" />
                             <span asp-validation-for="SiteName" class="text-danger"></span>
                         </div>
                         <div class="mb-2">
-                            <label>Title</label>
+                            <label>Título do Site</label>
                             <input type="text" asp-for="Title" class="form-control" />
                             <span asp-validation-for="Title" class="text-danger"></span>
                         </div>
 
                         <div class="mb-2">
-                            <label>Short Description</label>
+                            <label>Breve descrição do site</label>
                             <input type="text" asp-for="ShortDescription" class="form-control" />
                             <span asp-validation-for="ShortDescription" class="text-danger"></span>
                         </div>
 
                          <div class="mb-2">
-                            <label>Facebook Url</label>
+                            <label>Github Url</label>
                             <input type="text" asp-for="GithubUrl" class="form-control" />
                             <span asp-validation-for="GithubUrl" class="text-danger"></span>
                         </div>
                          <div class="mb-2">
-                            <label>Github Url</label>
+                            <label>LinkedIn Url</label>
                             <input type="text" asp-for="LinkedInUrl" class="form-control" />
                             <span asp-validation-for="LinkedInUrl" class="text-danger"></span>
                         </div>
                         <div class="mb-2">
-                            <label>Twitter Url</label>
+                            <label>Instagram Url</label>
                             <input type="text" asp-for="InstagramUrl" class="form-control" />
                             <span asp-validation-for="InstagramUrl" class="text-danger"></span>
                         </div>

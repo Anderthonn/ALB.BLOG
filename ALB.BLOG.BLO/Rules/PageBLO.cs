@@ -83,7 +83,7 @@ namespace ALB.BLOG.BLO.Rules
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<HomeVM?> GetPageHome(int? page, string? searchFilter = null)
+        public async Task<HomeVM?> GetPageHome(int? page, string? searchFilter = null, int[]? categories = null)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace ALB.BLOG.BLO.Rules
                 homeVM.ShortDescription = setting[0].ShortDescription;
                 homeVM.ThumbnailUrl = setting[0].ThumbnailUrl;
 
-                homeVM.Posts = await _postBLO.GetAllPostSearch(page, searchFilter);
+                homeVM.Posts = await _postBLO.GetAllPostSearch(page, searchFilter, categories);
 
                 return homeVM;
             }

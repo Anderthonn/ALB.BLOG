@@ -33,12 +33,7 @@ namespace ALB.BLOG.BLO.Rules
                 DateTime dateNow = DateTime.Now.AddHours(1);
 
                 if (emailVM == null)
-                    throw new Exception("Fill in the details before sending the email!");
-
-                var returnEnvioEmail = _generalBlogServices.SendEmail(emailVM);
-
-                if (returnEnvioEmail == false)
-                    throw new Exception("Email was not sent, please try again in a few minutes!");
+                    return "Preencha os dados antes de enviar o e-mail!";
 
                 var validateMacAddress = await _generalBlogServices.ValidateMac();
 
@@ -48,7 +43,7 @@ namespace ALB.BLOG.BLO.Rules
                 {
                     if (itemMacAddress.MacAddress == validateMacAddress && itemMacAddress.ShippingDate < dateNow)
                     {
-                        throw new Exception("You have already sent an email, please wait 1 hour to send another!");
+                        return "Você já enviou um e-mail, aguarde 1 hora para enviar outro!";
                     }
                 }
 
@@ -58,14 +53,19 @@ namespace ALB.BLOG.BLO.Rules
                 }
                 else
                 {
-                    throw new Exception("An error occurred, please try later!");
+                    return "Ocorreu um erro, tente mais tarde!";
                 }
 
-                emailAdd = new Email(emailVM.Name, emailVM.UserEmail, emailVM.Subject, emailVM.Message, emailVM.MacAddress, DateTime.Now);
+                var returnEnvioEmail = _generalBlogServices.SendEmail(emailVM);
+
+                if (returnEnvioEmail == false)
+                    return "O e-mail não foi enviado, tente novamente em alguns minutos!";
+
+                emailAdd = new Email(emailVM.Name, emailVM.UserEmail, emailVM.Subject, emailVM.Message, macAddress, DateTime.Now);
 
                 await Create(emailAdd);
 
-                return "Email successfully sent!";
+                return "E-mail enviado com sucesso!";
             }
             catch (Exception ex)
             {

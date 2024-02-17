@@ -19,10 +19,11 @@ namespace ALB.BLOG.DAL.Querys
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>
-        public async Task Created(Post post)
+        public async Task<Post> Created(Post post)
         {
             _context.Posts.Add(post);
             await _context.SaveChangesAsync();
+            return post;
         }
 
         /// <summary>
@@ -77,17 +78,27 @@ namespace ALB.BLOG.DAL.Querys
         /// </summary>
         /// <param name="searchFilter"></param>
         /// <returns></returns>
-        public async Task<List<Post>> GetAllPostSearch(string? searchFilter = null)
+        public async Task<List<Post>> GetAllPostSearch(string? searchFilter = null, int[]? categories = null)
         {
-            var posts = await _context.Posts!.Include(x => x.ApplicationUser).ToListAsync();
+            var posts = await _context.Posts!
+                                      .Include(x => x.ApplicationUser)
+                                      .Include(x => x.PostCategories).ThenInclude(x => x.Category)
+                                      .ToListAsync();
 
             if (!string.IsNullOrEmpty(searchFilter))
             {
                 var filter = searchFilter.Trim().ToLowerInvariant();
 
-                posts = posts.Where(p => p.Title.Trim().ToLower().Contains(filter, StringComparison.OrdinalIgnoreCase) ||
-                                    p.ShortDescription.Trim().ToLower().Contains(filter, StringComparison.OrdinalIgnoreCase) ||
-                                    p.Slug.Trim().ToLower().Contains(filter, StringComparison.OrdinalIgnoreCase)).ToList();
+                posts = posts.Where(p =>
+                    p.Title.Trim().ToLower().Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                    p.ShortDescription.Trim().ToLower().Contains(filter, StringComparison.OrdinalIgnoreCase) ||
+                    p.Slug.Trim().ToLower().Contains(filter, StringComparison.OrdinalIgnoreCase))
+                    .ToList();
+            }
+
+            if (categories != null && categories.Length > 0)
+            {
+                posts = posts.Where(p => p.PostCategories.Any(c => categories.Contains(c.CategoryId))).ToList();
             }
 
             return posts;
@@ -100,7 +111,7 @@ namespace ALB.BLOG.DAL.Querys
         /// <returns></returns>
         public async Task<Post?> GetPostByIdPost(int id)
         {
-            return await _context.Posts!.Include(x => x.ApplicationUser).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Posts!.Include(x => x.ApplicationUser).Include(x => x.PostCategories).ThenInclude(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         /// <summary>
@@ -120,7 +131,7 @@ namespace ALB.BLOG.DAL.Querys
         /// <returns></returns>
         public async Task<Post?> GetPostBySlug(string slug)
         {
-            return await _context.Posts!.Include(x => x.ApplicationUser).FirstOrDefaultAsync(x => x.Slug == slug);
+            return await _context.Posts!.Include(x => x.ApplicationUser).Include(x => x.PostCategories).ThenInclude(x => x.Category).FirstOrDefaultAsync(x => x.Slug == slug);
         }
 
         /// <summary>

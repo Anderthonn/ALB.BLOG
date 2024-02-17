@@ -1,0 +1,13 @@
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\bin\Release\net8.0\ALB.BLOG.DOMAIN.deps.json
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\bin\Release\net8.0\ALB.BLOG.DOMAIN.dll
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\bin\Release\net8.0\ALB.BLOG.DOMAIN.pdb
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ALB.BLOG.DOMAIN.csproj.AssemblyReference.cache
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ALB.BLOG.DOMAIN.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ALB.BLOG.DOMAIN.AssemblyInfoInputs.cache
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ALB.BLOG.DOMAIN.AssemblyInfo.cs
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ALB.BLOG.DOMAIN.csproj.CoreCompileInputs.cache
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ALB.BLOG.DOMAIN.sourcelink.json
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ALB.BLOG.DOMAIN.dll
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\refint\ALB.BLOG.DOMAIN.dll
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ALB.BLOG.DOMAIN.pdb
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.DOMAIN\obj\Release\net8.0\ref\ALB.BLOG.DOMAIN.dll

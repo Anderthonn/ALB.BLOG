@@ -1,7 +1,7 @@
 ﻿@model ALB.BLOG.BLO.ViewModels.PageVM
 
 @{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Contato";
 
     string pageThumbnail = "";
 
@@ -15,7 +15,6 @@
     }
 }
 
-<!-- Page Header-->
 <header class="masthead bg-black" style="background-image: url('@pageThumbnail')">
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -30,24 +29,36 @@
 </header>
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <h2 class="mb-4 title">Entre em Contato</h2>
-
-            <!-- Formulário de Contato -->
-            <form id="contactForm" action="/NomeDoController/ContactEmail" method="post">
+        <div class="col-md-6">            
+            <form id="contactForm" action="/Page/ContactEmail" method="post">
+                <div class="informacoes-contato mb-4">
+                    <h6>Se você quiser conversar, entre em contato.<br> Estou quase sempre online</h6>
+                    <br>
+                    <h6>Envie uma mensagem!!</h6>
+                    <h6>
+                        Telefone/Whatsapp: <a href="https://wa.me/5511957451257?text=Oi%2C%20tudo%20bem%3F" target="_blank">+55 (11) 9.95745-1257 </a>
+                    </h6>
+                    <h6>E-mail: <a href="mailto:anderthonnluyz@outlook.com">anderthonnluyz@outlook.com</a></h6>
+                    <h6>Intagram: <a href="https://www.instagram.com/t.h.o.n.n" target="_blank">t.h.o.n.n</a></h6>
+                </div>
                 <div class="form-group mb-4">
                     <label for="nome" class="mb-2 title">Nome:</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Seu Nome">
+                    <input type="text" class="form-control form-alb-input" id="nome" name="Name" placeholder="Seu Nome">
                 </div>
 
                 <div class="form-group mb-4">
                     <label for="email" class="mb-2 title">Email:</label>
-                    <input type="email" class="form-control" id="email" placeholder="Seu Email">
+                    <input type="email" class="form-control form-alb-input" id="email" name="UserEmail" placeholder="Seu Email">
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="subject" class="mb-2 title">Assunto:</label>
+                    <input type="text" class="form-control form-alb-input" id="subject" name="Subject" rows="4" placeholder="Assunto"></input>
                 </div>
 
                 <div class="form-group mb-4">
                     <label for="mensagem" class="mb-2 title">Mensagem:</label>
-                    <textarea class="form-control" id="mensagem" rows="4" placeholder="Sua Mensagem"></textarea>
+                    <textarea class="form-control form-alb-input" id="mensagem" name="Message" rows="4" placeholder="Sua Mensagem"></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-alb">Enviar</button>
@@ -68,34 +79,38 @@
     document.getElementById("contactForm").addEventListener("submit", function (event) {
         event.preventDefault();
 
-        // Obtenha os dados do formulário
-        var nome = document.getElementById("nome").value;
-        var email = document.getElementById("email").value;
-        var mensagem = document.getElementById("mensagem").value;
+        var nome = document.getElementsByName("Name")[0].value;
+        var email = document.getElementsByName("UserEmail")[0].value;
+        var subject = document.getElementsByName("Subject")[0].value;
+        var mensagem = document.getElementsByName("Message")[0].value;
 
-        // Crie um objeto com os dados do formulário
         var formData = {
-            Nome: nome,
-            Email: email,
-            Mensagem: mensagem
+            Name: nome,
+            UserEmail: email,
+            Subject: subject,
+            Message: mensagem
         };
 
-        // Envie os dados do formulário para o endpoint do controlador usando AJAX
-        fetch("/NomeDoController/ContactEmail", {
+        fetch("/Page/ContactEmail", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(formData)
         })
-        .then(response => response.json())
-        .then(data => {
-            // Exiba a resposta do servidor (pode ser uma mensagem de sucesso)
-            alert(data);
-        })
-        .catch(error => {
-            // Lide com erros, se necessário
-            console.error("Erro ao enviar o formulário:", error);
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(@Model.EmailResultMessage);
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert(@Model.EmailResultMessage);
+                location.reload();
+            })
+            .catch(error => {
+                alert(error.message);
+                location.reload();
+            });
     });
 </script>

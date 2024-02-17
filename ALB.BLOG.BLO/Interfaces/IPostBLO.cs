@@ -35,7 +35,7 @@ namespace ALB.BLOG.BLO.Interfaces
         /// <param name="page"></param>
         /// <param name="searchFilter"></param>
         /// <returns></returns>
-        Task<IPagedList<Post>> GetAllPostSearch(int? page, string? searchFilter = null);
+        Task<IPagedList<Post>> GetAllPostSearch(int? page, string? searchFilter = null, int[]? categories = null);
 
         /// <summary>
         /// Get post by ID and validate the user by name has access.

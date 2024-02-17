@@ -9,7 +9,7 @@ namespace ALB.BLOG.DAL.Interfaces
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>
-        Task Created(Post post);
+        Task<Post> Created(Post post);
 
         /// <summary>
         /// Delete a post.
@@ -42,7 +42,7 @@ namespace ALB.BLOG.DAL.Interfaces
         /// </summary>
         /// <param name="searchFilter"></param>
         /// <returns></returns>
-        Task<List<Post>> GetAllPostSearch(string? searchFilter = null);
+        Task<List<Post>> GetAllPostSearch(string? searchFilter = null, int[]? categories = null);
 
         /// <summary>
         /// Get a post by its ID.

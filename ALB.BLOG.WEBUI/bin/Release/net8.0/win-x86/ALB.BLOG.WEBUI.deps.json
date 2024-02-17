@@ -2017,6 +2017,26 @@
         }
       },
       "Microsoft.Extensions.Primitives/8.0.0": {},
+      "Microsoft.Identity.Client/4.59.0": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Abstractions": "6.22.0",
+          "System.Diagnostics.DiagnosticSource": "8.0.0"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Identity.Client.dll": {
+            "assemblyVersion": "4.59.0.0",
+            "fileVersion": "4.59.0.0"
+          }
+        }
+      },
+      "Microsoft.IdentityModel.Abstractions/6.22.0": {
+        "runtime": {
+          "lib/net6.0/Microsoft.IdentityModel.Abstractions.dll": {
+            "assemblyVersion": "6.22.0.0",
+            "fileVersion": "6.22.0.30727"
+          }
+        }
+      },
       "Microsoft.Net.Http.Headers/2.2.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "8.0.0",
@@ -2370,6 +2390,7 @@
           "Microsoft.AspNetCore.Hosting": "2.2.7",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Hosting": "8.0.0",
+          "Microsoft.Identity.Client": "4.59.0",
           "X.PagedList": "8.4.7"
         },
         "runtime": {
@@ -2887,6 +2908,20 @@
       "sha512": "sha512-bXJEZrW9ny8vjMF1JV253WeLhpEVzFo1lyaZu1vQ4ZxWUlVvknZ/+ftFgVheLubb4eZPSwwxBeqS1JkCOjxd8g==",
       "path": "microsoft.extensions.primitives/8.0.0",
       "hashPath": "microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Identity.Client/4.59.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PbuMAe/h1/WoEqhHwJ4UhmL6pdo1ZxeesWyhKyhSF/S653c0i1XX8DSFLVia+WT1+j3ppqBYFyfrQgwatlaU+Q==",
+      "path": "microsoft.identity.client/4.59.0",
+      "hashPath": "microsoft.identity.client.4.59.0.nupkg.sha512"
+    },
+    "Microsoft.IdentityModel.Abstractions/6.22.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-iI+9V+2ciCrbheeLjpmjcqCnhy+r6yCoEcid3nkoFWerHgjVuT6CPM4HODUTtUPe1uwks4wcnAujJ8u+IKogHQ==",
+      "path": "microsoft.identitymodel.abstractions/6.22.0",
+      "hashPath": "microsoft.identitymodel.abstractions.6.22.0.nupkg.sha512"
     },
     "Microsoft.Net.Http.Headers/2.2.0": {
       "type": "package",

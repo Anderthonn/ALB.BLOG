@@ -43,15 +43,19 @@ namespace ALB.BLOG.INFRA.IOC.InfrastructureSettings
 
             //Dependency injection of the DAO layer.
             services.AddScoped<IApplicationUserDAO, ApplicationUserDAO>();
+            services.AddScoped<ICategoryDAO, CategoryDAO>();
             services.AddScoped<IEmailDAO, EmailDAO>();
             services.AddScoped<IPageDAO, PageDAO>();
+            services.AddScoped<IPostCategoryDAO, PostCategoryDAO>();
             services.AddScoped<IPostDAO, PostDAO>();
             services.AddScoped<ISettingDAO, SettingDAO>();
 
             //Dependency injection of the BLO layer.
             services.AddScoped<IApplicationUserBLO, ApplicationUserBLO>();
+            services.AddScoped<ICategoryBLO, CategoryBLO>();
             services.AddScoped<IEmailBLO, EmailBLO>();
             services.AddScoped<IPageBLO, PageBLO>();
+            services.AddScoped<IPostCategoryBLO, PostCategoryBLO>();
             services.AddScoped<IPostBLO, PostBLO>();
             services.AddScoped<ISettingBLO, SettingBLO>();
 

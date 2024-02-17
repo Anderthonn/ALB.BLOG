@@ -3,8 +3,10 @@ using ALB.BLOG.BLO.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using System.Net;
 using System.Net.Mail;
 using System.Net.NetworkInformation;
+using System.Text;
 
 namespace ALB.BLOG.BLO.Services
 {
@@ -26,23 +28,25 @@ namespace ALB.BLOG.BLO.Services
         {
             try
             {
-                MailMessage oEmail = new MailMessage();
-                MailAddress sDe = new MailAddress(emailVM.UserEmail);
+                MailMessage mail = new MailMessage();
+                string senderEmail = _configuration.GetSection("ConnectionEmail").GetSection("EmailHost").Value;
+                mail.From = new MailAddress(senderEmail);
+                mail.To.Add(new MailAddress(_configuration.GetSection("ConnectionEmail").GetSection("Email").Value));
+                mail.Subject = emailVM.Subject;
 
-                oEmail.To.Add(_configuration.GetSection("ConnectionEmail").GetSection("Email").Value);
-                oEmail.From = sDe;
-                oEmail.Priority = MailPriority.Normal;
-                oEmail.IsBodyHtml = false;
-                oEmail.Subject = emailVM.Subject;
-                oEmail.Body = "Contact name: " + emailVM.Name + "Contact E-mail:" + emailVM.UserEmail + "Subject: " + emailVM.Subject + "Message: " + emailVM.Message;
+                StringBuilder body = new StringBuilder();
+                body.AppendLine("Contact name: " + emailVM.Name);
+                body.AppendLine("Contact E-mail:" + emailVM.UserEmail);
+                body.AppendLine("Subject: " + emailVM.Subject);
+                body.AppendLine("Message: " + emailVM.Message);
 
-                SmtpClient oEnviar = new SmtpClient();
+                mail.Body = body.ToString();
 
-                oEnviar.Host = _configuration.GetSection("ConnectionEmail").GetSection("Host").Value;
-
-                oEnviar.Credentials = new System.Net.NetworkCredential(_configuration.GetSection("ConnectionEmail").GetSection("Email").Value, _configuration.GetSection("ConnectionEmail").GetSection("Password").Value);
-                oEnviar.Send(oEmail);
-                oEmail.Dispose();
+                SmtpClient smtpClient = new SmtpClient(_configuration.GetSection("ConnectionEmail").GetSection("Host").Value);
+                smtpClient.Port = 587;
+                smtpClient.EnableSsl = true;
+                smtpClient.Credentials = new NetworkCredential(senderEmail, _configuration.GetSection("ConnectionEmail").GetSection("Password").Value);
+                smtpClient.Send(mail);
 
                 return true;
             }

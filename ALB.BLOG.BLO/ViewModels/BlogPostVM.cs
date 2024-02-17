@@ -1,4 +1,6 @@
-﻿namespace ALB.BLOG.BLO.ViewModels
+﻿using ALB.BLOG.DOMAIN.Models;
+
+namespace ALB.BLOG.BLO.ViewModels
 {
     public class BlogPostVM
     {
@@ -9,5 +11,6 @@
         public string? ThumbnailUrl { get; set; }
         public string? ShortDescription { get; set; }
         public string? Description { get; set; }
+        public List<PostCategory> PostCategories { get; set; }
     }
 }

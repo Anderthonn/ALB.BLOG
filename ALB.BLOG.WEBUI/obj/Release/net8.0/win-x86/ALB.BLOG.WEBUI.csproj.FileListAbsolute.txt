@@ -33,6 +33,8 @@ C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)
 C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.WEBUI\bin\Release\net8.0\win-x86\Microsoft.Extensions.Identity.Core.dll
 C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.WEBUI\bin\Release\net8.0\win-x86\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.WEBUI\bin\Release\net8.0\win-x86\Microsoft.Extensions.Options.dll
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.WEBUI\bin\Release\net8.0\win-x86\Microsoft.Identity.Client.dll
+C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.WEBUI\bin\Release\net8.0\win-x86\Microsoft.IdentityModel.Abstractions.dll
 C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.WEBUI\bin\Release\net8.0\win-x86\Microsoft.Win32.SystemEvents.dll
 C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.WEBUI\bin\Release\net8.0\win-x86\Mono.TextTemplating.dll
 C:\Users\amelobat\OneDrive - NTT DATA EMEAL\Documentos\ALB\Projetos - (Pessoais)\ALB.BLOG\ALB.BLOG.WEBUI\bin\Release\net8.0\win-x86\MySql.Data.dll

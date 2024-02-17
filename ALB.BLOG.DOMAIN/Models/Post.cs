@@ -13,7 +13,7 @@ namespace ALB.BLOG.DOMAIN.Models
 
         [Column(name: "title")]
         [Display(Name = "Title: ", ShortName = "Title")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Enter title")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Enter Title")]
         [MinLength(50, ErrorMessage = "Your title must have at least 50 characters")]
         [MaxLength(150, ErrorMessage = "Your title must have a maximum of 150 characters")]
         public string? Title { get; private set; }
@@ -46,6 +46,8 @@ namespace ALB.BLOG.DOMAIN.Models
         [Column(name: "thumbnail_url")]
         [Display(Name = "Thumbnail Url: ", ShortName = "Thumbnail Url")]
         public string? ThumbnailUrl { get; private set; }
+
+        public List<PostCategory> PostCategories { get; private set; }
 
         [ForeignKey(name: "ApplicationUserId")]
         public ApplicationUser? ApplicationUser { get; private set; }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
 namespace ALB.BLOG.BLO.ViewModels
@@ -13,5 +14,7 @@ namespace ALB.BLOG.BLO.ViewModels
         public string? Description { get; set; }
         public string? ThumbnailUrl { get; set; }
         public IFormFile? Thumbnail { get; set; }
+        [HiddenInput(DisplayValue = false)]
+        public List<int> SelectedCategories { get; set; }
     }
 }

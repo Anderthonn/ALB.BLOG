@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "muRdjgMGeQy54XAMEt6+Du//lFRdzJ/JcE3XFOyXxLGGp4QBLwvzLlv2TfX1kVdmpfw1qzjGFKtzMZv4/HDatg==",
+  "dgSpecHash": "Y3ELpfiE9f+23MEfF3fPcHqxsGT5nvvacr/MHWN33YArLC13suE0NIQkV2aPUKPYT3RREtMTs8h6hi8ecNdQ8w==",
   "success": true,
   "projectFilePath": "C:\\Users\\amelobat\\OneDrive - NTT DATA EMEAL\\Documentos\\ALB\\Projetos - (Pessoais)\\ALB.BLOG\\ALB.BLOG.WEBUI\\ALB.BLOG.WEBUI.csproj",
   "expectedPackageFiles": [
@@ -69,6 +69,8 @@
     "C:\\Users\\amelobat\\.nuget\\packages\\microsoft.extensions.options\\8.0.1\\microsoft.extensions.options.8.0.1.nupkg.sha512",
     "C:\\Users\\amelobat\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\8.0.0\\microsoft.extensions.options.configurationextensions.8.0.0.nupkg.sha512",
     "C:\\Users\\amelobat\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512",
+    "C:\\Users\\amelobat\\.nuget\\packages\\microsoft.identity.client\\4.59.0\\microsoft.identity.client.4.59.0.nupkg.sha512",
+    "C:\\Users\\amelobat\\.nuget\\packages\\microsoft.identitymodel.abstractions\\6.22.0\\microsoft.identitymodel.abstractions.6.22.0.nupkg.sha512",
     "C:\\Users\\amelobat\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\amelobat\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\amelobat\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",

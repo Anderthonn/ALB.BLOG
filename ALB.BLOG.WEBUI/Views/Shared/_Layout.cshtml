@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>@(settingVM.SiteName == null ? "ALG" : settingVM.SiteName) - @ViewData["Title"]</title>
+    <title>@(settingVM.SiteName == null ? "Nome do Site" : settingVM.SiteName) - @ViewData["Title"]</title>
     <link rel="icon" type="image/x-icon" href="/blog/assets/ALG_ICON.ico" />
     <!-- Font Awesome icons (free version)-->
     <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -31,8 +31,8 @@
     <nav class="navbar border-top bg-black navbar-expand-lg navbar-light nav-alb" id="mainNav">
         <div class="container px-4 px-lg-4">
             <img class="img-log-alb" src="~/blog/assets/img/ALG_LOGO.svg" alt="ALG Icon Preview" />
-            <a class="navbar-brand" asp-controller="Home" asp-action="Index">@(settingVM.SiteName == null ? "ALG" : settingVM.SiteName)</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">@(settingVM.SiteName == null ? "Nome do Site" : settingVM.SiteName)</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" style="color:white;">
                 Menu
                 <i class="fas fa-bars"></i>
             </button>

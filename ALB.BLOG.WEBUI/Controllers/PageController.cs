@@ -39,11 +39,14 @@ namespace ALB.BLOG.WEBUI.Controllers
             }
         }
 
-        public async Task<IActionResult> ContactEmail(EmailVM emailVM)
+        [HttpPost]
+        public async Task<IActionResult> ContactEmail([FromBody] EmailVM emailVM)
         {
             try
             {
-                return View(await _emailBLO.SendEmail(emailVM));
+                string resultMessage = await _emailBLO.SendEmail(emailVM);
+                ViewBag.EmailResultMessage = resultMessage;
+                return Ok(resultMessage);
             }
             catch (Exception ex)
             {

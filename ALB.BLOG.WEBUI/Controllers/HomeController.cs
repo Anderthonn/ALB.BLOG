@@ -14,11 +14,11 @@ namespace ALB.BLOG.WEBUI.Controllers
             _pageBLO = pageBLO;
         }
 
-        public async Task<IActionResult> Index(int? page, string? searchFilter = null)
+        public async Task<IActionResult> Index(int? page, string? searchFilter = null, int[]? categories = null)
         {
             try
             {
-                return View(await _pageBLO.GetPageHome(page, searchFilter));
+                return View(await _pageBLO.GetPageHome(page, searchFilter, categories));
             }
             catch (Exception ex)
             {

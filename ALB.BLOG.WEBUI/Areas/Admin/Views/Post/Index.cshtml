@@ -3,14 +3,14 @@
 @using X.PagedList.Web.Common
 @model IPagedList<ALB.BLOG.BLO.ViewModels.PostVM>
 @{
-    ViewData["Title"] = "List Of Posts";
+    ViewData["Title"] = "Lista de Publicações";
 }
 
 <div class="container-fluid">
-    <a class="btn mb-1 btn-alb-page" asp-action="Create" asp-controller="Post" asp-area="Admin"><i class="bi bi-plus-circle-fill"></i> Add Post</a>
+    <a class="btn mb-1 btn-alb-page" asp-action="Create" asp-controller="Post" asp-area="Admin"><i class="bi bi-plus-circle-fill"></i> Adicionar Publicação</a>
     <div class="card">
         <div class="card-header card-alb-name">
-            <h4 class="card-title text-white">List of Posts</h4>
+            <h4 class="card-title text-white">Lista de Publicações</h4>
         </div>
         <div class="card-body card-alb-body">
             @foreach(var post in Model)
@@ -35,9 +35,9 @@
                         <div class="col-5 text-right d-flex justify-content-center flex-column">
                             <h4 style="font-size:1rem;" class="fw-bold">@post.AuthorName</h4>
                             <div class="d-flex justify-content-end align-items-center">
-                                <a class="btn btn-warning " asp-area="Admin" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" method="post">Edit</a>|
-                                <form class="" asp-area="Admin" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" method="post" onsubmit="return confirm('Do you want to delete this post?')">
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                <a class="btn btn-warning " asp-area="Admin" asp-controller="Post" asp-action="Edit" asp-route-id="@post.Id" method="post">Editar</a>|
+                                <form class="" asp-area="Admin" asp-controller="Post" asp-action="Delete" asp-route-id="@post.Id" method="post" onsubmit="return confirm('Quer excluir esta postagem?')">
+                                    <button type="submit" class="btn btn-danger">Excluir</button>
                                 </form>
                             </div>
                         </div>

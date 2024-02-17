@@ -50,7 +50,8 @@ namespace ALB.BLOG.WEBUI.Areas.Admin.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) { return View(createPostVM); }
+                if (createPostVM.Title == null)
+                    return View(createPostVM);
 
                 await _postBLO.Create(User.Identity!.Name, createPostVM);
 
@@ -116,7 +117,8 @@ namespace ALB.BLOG.WEBUI.Areas.Admin.Controllers
         {
             try
             {
-                if (!ModelState.IsValid) { return View(createPostVM); }
+                if (createPostVM.Title == null)
+                    return View(createPostVM);
 
                 var getPost = await _postBLO.Update(createPostVM);
 

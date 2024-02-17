@@ -1,7 +1,7 @@
 ﻿@model ALB.BLOG.BLO.ViewModels.BlogPostVM
 
 @{
-    ViewData["Title"] = "Post";
+    ViewData["Title"] = "Publicacão";
 
     string thumbnailUrl = "";
 
@@ -20,23 +20,27 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="thumbnail-preview">
-                    <!-- Add your image source here -->
                     <img src="~/thumbnails/@Model.ThumbnailUrl" class="img-fluid" alt="Post Thumbnail Preview" />
                 </div>
                 <div class="post-heading">
                     <h1>@Model.Title</h1>
-                    <h2 class="subheading">@Model.ShortDescription</h2>
+                    <h2 class="subheading" style="margin: 0.75rem 0 0.8rem !important;">@Model.ShortDescription</h2>
+                    @foreach (var category in Model.PostCategories)
+                    {
+                        <div class="category-badge" style="background-color: @(category?.Category?.Color); width: auto; padding: 0.2% 1%; margin: 0.2%; display: inline-block; border-radius: 5px; margin-bottom: 1rem;">
+                            <p style="color: white; margin: 0; font-size: 65%">@(category?.Category?.Name)</p>
+                        </div>
+                    }
                     <span class="meta">
-                        Posted by
+                        Postado por
                         <a href="#!">@Model.AuthorName</a>
-                        on @Model.CreatedDate.ToShortDateString()
+                        em @Model.CreatedDate.ToShortDateString()
                     </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
-<!-- Post Content-->
 <article class="mb-4">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
